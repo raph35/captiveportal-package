@@ -13,13 +13,13 @@ IPTABLESSAVE=/sbin/iptables-save
 IPTABLESRESTORE=/sbin/iptables-restore
 CONF_PATH=/etc/captiveportal
 LIB_PATH=/usr/local/lib/captiveportal
-IPTABLES_PATH_BACKUP='/tmp/itables.bak.tmp'
+IPTABLES_PATH_BACKUP='/tmp/iptables.bak.tmp'
 
 # Test if the user is root or not
-if [ $USER != 'root' ]; then	
-	echo 'You must be root to launch the script'
-	exit 1
-fi
+# if [ $USER != 'root' ]; then	
+# 	echo 'You must be root to launch the script'
+# 	exit 1
+# fi
 # Function that display the usage of the script
 usage() {
 	echo "Usage: $SCRIPTNAME {start|stop|restart|reboot|flush}\n"
@@ -45,18 +45,13 @@ fi
 
 HTTP_DEST=$ip_addrWeb
 HTTPS_DEST=$ip_addrWeb
-if [ ! -z $http_port ]; then
-	HTTP_DEST=${HTTP_DEST}:${http_port}
-fi
 
-if [ ! -z $https_port ]; then
-	HTTPS_DEST=${HTTPS_DEST}:${https_port}
-fi
+[ ! -z $http_port ] && HTTP_DEST=${HTTP_DEST}:${http_port}
+[ ! -z $https_port ] && HTTPS_DEST=${HTTPS_DEST}:${https_port}
 
 # Sourcing functions that will be used in the script
-if [ ! -f ${LIB_PATH}/function.sh ]; then
-	echo "File not found"
-fi
+[ -r ${LIB_PATH}/function.sh ] || echo "File not found"
+
 . ${LIB_PATH}/function.sh
 
 # Functions
@@ -119,7 +114,7 @@ stop() {
 }
 
 addConnectedUser() {
-	querySql 'SELECT pseudo, mac, ip FROM connected WHERE isConnected=1' | while read -r line
+	querySql 'SELECT pseudo, mac, ip FROM `connected` WHERE isConnected=1' | while read -r line
 	do
 		# echo $line
 		mac=`echo "$line" | cut -f2`
@@ -177,7 +172,7 @@ case "$1" in
 		;;
 	*)
 		usage
-		exit 1
+		RETVAL=1
 esac
 
 exit $RETVAL

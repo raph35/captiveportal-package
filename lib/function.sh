@@ -6,7 +6,7 @@
 # Sourcing the configuration of the database
 CONF_PATH=/etc/captiveportal
 
-. ${CONF_PATH}/mysql.conf
+. ${CONF_PATH}/captiveportal.conf
 
 MYSQL=/usr/bin/mysql
 IPTABLES=/sbin/iptables
