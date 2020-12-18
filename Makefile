@@ -41,6 +41,7 @@ install:
 	cp -r lib /usr/local/lib/captiveportal
 	cp -r config /etc/captiveportal
 	cp other/service /etc/init.d/captiveportal
+	chmod +x /etc/init.d/captiveportal
 	update-rc.d captiveportal defaults
 	@echo 'Installation finished'
 
@@ -50,6 +51,7 @@ reinstall:
 	cp -r lib /usr/local/lib/captiveportal
 	cp -r config /etc/captiveportal
 	cp -u other/service /etc/init.d/captiveportal
+	chmod +x /etc/init.d/captiveportal
 	systemctl daemon-reload
 
 
