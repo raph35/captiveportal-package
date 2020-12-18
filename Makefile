@@ -36,23 +36,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 ### Install rules ###
 install:
-	@echo 'Copying files...'
-	cp $(EXEC) /usr/local/bin
-	cp -r lib /usr/local/lib/captiveportal
-	cp -r config /etc/captiveportal
-	cp other/service /etc/init.d/captiveportal
-	chmod +x /etc/init.d/captiveportal
-	update-rc.d captiveportal defaults
-	@echo 'Installation finished'
+	./scripts/install.sh install
 
 reinstall:
-	cp -u $(EXEC) /usr/local/bin
-	rm -rf /usr/local/lib/captiveportal /etc/captiveportal
-	cp -r lib /usr/local/lib/captiveportal
-	cp -r config /etc/captiveportal
-	cp -u other/service /etc/init.d/captiveportal
-	chmod +x /etc/init.d/captiveportal
-	systemctl daemon-reload
+	./scripts/install.sh reinstall
 
 
 ### Clean rules ###

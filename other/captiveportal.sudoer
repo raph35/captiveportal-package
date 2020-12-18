@@ -1,0 +1,6 @@
+# This file was generated automatically, use visudo to edit this file
+
+www-data ALL=NOPASSWD: /usr/local/lib/captiveportal/addUser.sh
+www-data ALL=NOPASSWD: /usr/local/lib/captiveportal/removeTrack.sh
+admin123 ALL=NOPASSWD: /usr/local/lib/captiveportal/removeUser.sh
+admin123 ALL=NOPASSWD: /usr/local/lib/captiveportal/addUser.sh
