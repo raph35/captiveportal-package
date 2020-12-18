@@ -1,2 +1,3 @@
 src/*.o
-./captiveportal
+captiveportal
+!scripts/init.d/captiveportal
