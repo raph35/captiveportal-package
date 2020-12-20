@@ -8,6 +8,12 @@ then
     echo "Type make to compile the program"
     exit 0
 fi
+installNode(){
+    echo "Setting up the node Server ..."
+	cp scripts/init.d/nodeServer /etc/init.d/nodeServer
+	chmod +x /etc/init.d/nodeServer
+	update-rc.d nodeServer defaults
+}
 
 install(){
     echo "Installing the program ..."
@@ -32,6 +38,8 @@ reinstall(){
 }
 
 case $1 in
+    setupNode) installNode
+    ;;
     install) install
     ;;
     reinstall) reinstall

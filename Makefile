@@ -41,6 +41,8 @@ install:
 reinstall:
 	./scripts/install.sh reinstall
 
+installNode:
+	./scripts/install.sh setupNode
 
 ### Clean rules ###
 clean:
